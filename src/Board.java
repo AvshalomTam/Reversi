@@ -4,8 +4,8 @@ public abstract class Board {
 
     public Board(int size) {
         this.size_ = size;
+        this.cells_ = new cell[size][size];
         for (int i = 0; i < size; i++) {
-            this.cells_[i] = new cell[size];
             for (int j = 0; j < size; j++) {
                 this.cells_[i][j] = cell.empty;
             }
