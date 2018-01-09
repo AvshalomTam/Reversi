@@ -13,7 +13,7 @@ public class main extends Application {
 
         try {
             AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-            Scene scene = new Scene(root,520,400);
+            Scene scene = new Scene(root,800,500);
 
             primaryStage.setTitle("Reversi");
             primaryStage.setScene(scene);

@@ -30,7 +30,7 @@ public class ReversiController implements Initializable {
 
         try {
             AnchorPane set = (AnchorPane) FXMLLoader.load(getClass().getResource("SettingsMenu.fxml"));
-            stage.setScene(new Scene(set,520,400));
+            stage.setScene(new Scene(set,800,500));
         } catch (Exception e) {
             e.printStackTrace();
         }
