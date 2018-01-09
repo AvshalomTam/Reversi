@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Representing a human player.
  */
@@ -28,7 +30,7 @@ public class HumanPlayer extends Player {
      *
      * @return coordinates
      */
-    public Coordinates getMove() {
+    public Coordinates getMove() throws Exception {
         Coordinates c = new Coordinates(-1, -1);
         try {
             if (!this.judge_.hasOptions(this.board_, this.getId())) {
@@ -39,7 +41,7 @@ public class HumanPlayer extends Player {
 
                 return c;
             }
-        } catch (e) {
+        } catch (Exception e) {
             throw e;
         }
 
@@ -49,14 +51,14 @@ public class HumanPlayer extends Player {
         while (true) {
             try {
                 String s = this.gameflow_.input();
-                input = Coordinates(s).move(Coordinates(-1, -1));
+                input = (new Coordinates(s)).move(new Coordinates(-1, -1));
                 //checking if player's choice is one of the options
                 if (this.judge_.isValidChoice(this.board_, input, this.getId())) {
                     break;
                 } else {
-                    throw "That's none of your choices!";
+                    throw new Exception("That's none of your choices!");
                 }
-            } catch (error) {
+            } catch (Exception error) {
                 this.gameflow_.printInputError(error);
                 this.gameflow_.printMoveRequest();
                 continue;
@@ -68,7 +70,7 @@ public class HumanPlayer extends Player {
             this.listener_.setPreName(this.getName());
             this.hasMove(true);
             return input;
-        } catch (e) {
+        } catch (Exception e) {
             throw e;
         }
     }
@@ -90,7 +92,7 @@ public class HumanPlayer extends Player {
             this.gameflow_.printNoMove();
             return;
         }
-        list<Coordinates> options = this.judge_.getOptions(this.board_, this.getId());
+        ArrayList<Coordinates> options = this.judge_.getOptions(this.board_, this.getId());
         //printing the player's options
         this.gameflow_.printOptions(options);
 

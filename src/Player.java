@@ -3,7 +3,7 @@
  */
 public abstract class Player {
 
-    private Boolean had_move_;
+    private boolean had_move_;
     private cell player_id_;
     private String name_;
     /**
@@ -47,4 +47,5 @@ public abstract class Player {
         return this.player_id_;
     }
     abstract void message();
+    abstract Coordinates getMove() throws Exception;
 }
