@@ -45,7 +45,4 @@ public interface Display {
      * @return String
      */
     String input();
-    void printGameName(String name);
-    String getGameName();
-    void presentPlayer(String name);
 }

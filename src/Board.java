@@ -39,4 +39,6 @@ public abstract class Board {
         }
         return score;
     }
+
+    abstract void printBoard();
 }
