@@ -59,7 +59,7 @@ public class HumanPlayer extends Player {
                     throw new Exception("That's none of your choices!");
                 }
             } catch (Exception error) {
-                this.gameflow_.printInputError(error);
+                this.gameflow_.printInputError(error.getMessage());
                 this.gameflow_.printMoveRequest();
                 continue;
             }
@@ -82,7 +82,7 @@ public class HumanPlayer extends Player {
         //prints previous player move
         if (this.listener_.preHadMove()){
             this.gameflow_.printPreviousMove(this.listener_.getName(), (this.
-            listener_.getPreMove().move(Coordinates(1, 1)).toString()));
+            listener_.getPreMove().move(new Coordinates(1, 1)).toString()));
         }
 
         //prints whose turn it is
