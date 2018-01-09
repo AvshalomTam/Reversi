@@ -1,10 +1,13 @@
 package mazeapp;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import javax.swing.text.html.StyleSheet;
 
 public class Main extends Application {
 
@@ -12,8 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             HBox root = (HBox)FXMLLoader.load(getClass().getResource("MazeGame.fxml"));
-            Scene scene = new Scene(root,520,400);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            Scene scene = new Scene(root,1800,500);
 
             primaryStage.setTitle("Maze game");
             primaryStage.setScene(scene);

@@ -11,9 +11,11 @@ public class MazeBoard extends GridPane {
     private int[][] board;
     private static final int FREE = 0;
     private static final int WALL = 1;
+    private Player player;
 
     public MazeBoard(int[][] board) {
         this.board = board;
+        player = new Player(this, 0, 0);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MazeBoard.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -23,6 +25,27 @@ public class MazeBoard extends GridPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        try {
+            fxmlLoader.load();
+            this.setOnKeyPressed(event -> {
+                switch (event.getCode()) {
+                    case DOWN:
+                        player.moveDown();
+                        break;
+                    case UP:
+                        player.moveUp();
+                        break;
+                    case LEFT:
+                        player.moveLeft();
+                        break;
+                    case RIGHT:
+                        player.moveRight();
+                        break;
+                }
+                event.consume();
+            });
+        } catch (Exception e) {}
     }
 
     public void draw() {
@@ -42,5 +65,6 @@ public class MazeBoard extends GridPane {
                     this.add(new Rectangle(cellWidth, cellHeight, Color.BLACK), j, i);
             }
         }
+        player.draw(cellWidth, cellHeight);
     }
 }

@@ -21,5 +21,16 @@ public class MazeGameController implements Initializable {
         mazeBoard.setPrefHeight(400);
         root.getChildren().add(0, mazeBoard);
         mazeBoard.draw();
+
+        root.widthProperty().addListener((observable, oldValue, newValue) -> {
+            double boardNewWidth = newValue.doubleValue() - 120;
+            mazeBoard.setPrefWidth(boardNewWidth);
+            mazeBoard.draw();
+        });
+
+        root.heightProperty().addListener((observable, oldValue, newValue) -> {
+            mazeBoard.setPrefHeight(newValue.doubleValue());
+            mazeBoard.draw();
+        });
     }
 }
