@@ -47,5 +47,5 @@ public abstract class Player {
         return this.player_id_;
     }
     abstract void message();
-    abstract Coordinates getMove() throws Exception;
+    abstract Coordinates getMove();
 }

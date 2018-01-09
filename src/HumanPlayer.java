@@ -30,19 +30,15 @@ public class HumanPlayer extends Player {
      *
      * @return coordinates
      */
-    public Coordinates getMove() throws Exception {
+    public Coordinates getMove() {
         Coordinates c = new Coordinates(-1, -1);
-        try {
-            if (!this.judge_.hasOptions(this.board_, this.getId())) {
-                this.listener_.hadMove(false);
-                this.listener_.setPreMove(c);
-                this.listener_.setPreName(this.getName());
-                this.hasMove(false);
+        if (!this.judge_.hasOptions(this.board_, this.getId())) {
+            this.listener_.hadMove(false);
+            this.listener_.setPreMove(c);
+            this.listener_.setPreName(this.getName());
+            this.hasMove(false);
 
-                return c;
-            }
-        } catch (Exception e) {
-            throw e;
+            return c;
         }
 
         Coordinates input;
