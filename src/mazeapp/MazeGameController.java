@@ -12,7 +12,16 @@ public class MazeGameController implements Initializable {
     private HBox root;
     private int[][] maze = {
             {0,1,0,1,0,0,0,1,0,0,0},
-            {0,1,0,1,1,1,0,1,0,1,0}};
+            {0,1,0,1,1,1,0,1,0,1,0},
+            {0,0,0,1,0,0,0,1,0,1,0},
+            {1,1,0,1,1,1,0,1,0,1,1},
+            {0,1,0,0,0,0,0,0,0,0,0},
+            {1,1,0,1,0,1,1,1,1,1,1},
+            {0,0,0,1,0,0,0,0,0,1,0},
+            {0,1,0,1,1,1,1,1,0,1,0},
+            {0,1,0,0,0,0,0,1,0,1,0},
+            {1,1,0,1,1,1,0,1,1,1,0},
+            {0,0,0,0,0,1,0,0,0,0,0}};
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -22,6 +31,7 @@ public class MazeGameController implements Initializable {
         root.getChildren().add(0, mazeBoard);
         mazeBoard.draw();
 
+        root.setOnKeyPressed(mazeBoard.getOnKeyPressed());
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
             double boardNewWidth = newValue.doubleValue() - 120;
             mazeBoard.setPrefWidth(boardNewWidth);

@@ -1,26 +1,24 @@
-package mazeapp;
+package ReversiApp;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import javax.swing.text.html.StyleSheet;
-
-public class Main extends Application {
-
+public class main extends Application {
     @Override
     public void start(Stage primaryStage) {
+
         try {
-            HBox root = (HBox)FXMLLoader.load(getClass().getResource("MazeGame.fxml"));
+            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
             Scene scene = new Scene(root,520,400);
 
-            primaryStage.setTitle("Maze game");
+            primaryStage.setTitle("Reversi");
             primaryStage.setScene(scene);
             primaryStage.show();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
