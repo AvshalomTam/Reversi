@@ -48,6 +48,6 @@ public abstract class Player {
     public cell getId() {
         return this.player_id_;
     }
-    abstract void message();
-    abstract Coordinates getMove();
+    abstract public void message();
+    abstract public Coordinates getMove();
 }

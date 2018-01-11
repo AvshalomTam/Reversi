@@ -10,7 +10,7 @@
 <HBox fx:id="root" spacing="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReversiApp.ReversiGameController">
     <VBox spacing="10">
       <children>
-         <GridPane prefWidth="355.0">
+         <GridPane>
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -22,11 +22,11 @@
            </rowConstraints>
             <children>
                <Label text="Current Player:" />
-               <Label fx:id="current" GridPane.columnIndex="1" />
+               <Label text="Label" GridPane.columnIndex="1" />
                <Label text="1st Player score:" GridPane.rowIndex="1" />
-               <Label fx:id="score_pl1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                <Label text="2nd Player score:" GridPane.rowIndex="2" />
-               <Label fx:id="score_pl2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
          </GridPane>
       </children>

@@ -56,9 +56,8 @@ public class GraphicDisplay implements Display {
 
     @Override
     public String input() {
-        Scanner reader = new Scanner(System.in);
-        String s = reader.nextLine();
-
-        return s;
+        /*Coordinates input = this.controll_board.getClick();
+        return input.move(new Coordinates(-1, -1)).toString();*/
+        return null;
     }
 }

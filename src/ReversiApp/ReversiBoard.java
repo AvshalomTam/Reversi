@@ -1,8 +1,6 @@
 package ReversiApp;
 
-import Game.Board;
-import Game.Coordinates;
-import Game.cell;
+import Game.*;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -11,68 +9,95 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import java.awt.*;
+import java.io.IOException;
 
-public class ReversiBoard extends Board {
-    private GraphicBoard board;
+public class ReversiBoard extends GridPane {
+    private Board board;
     private Color color_pl1;
     private Color color_pl2;
+    private Coordinates input = null;
+    private FXMLLoader loader;
+    private cell current = cell.first_player;
 
     public ReversiBoard(int size, Color colorPl1, Color colorPl2) {
-        super(size);
-        this.board = new GraphicBoard();
+        this.board = new GraphicBoard(size);
         this.color_pl1 = colorPl1;
         this.color_pl2 = colorPl2;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReversiBoard.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
+        this.loader = new FXMLLoader(getClass().getResource("ReversiBoard.fxml"));
+        this.loader.setRoot(this);
+        this.loader.setController(this);
+
+        try {
+            this.loader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+        getClick();
+    }
+
+    public void getClick() {
+        try {
+            this.loader.load();
+            this.setOnMouseClicked(event -> {
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+                x = (int) (x / (this.getPrefWidth() / this.board.getSize()));
+                y = (int) (y / (this.getPrefHeight() / this.board.getSize()));
+                this.input = new Coordinates(x, y);
+                GameLogic judge = new BasicRules();
+                try {
+                    if (judge.isValidChoice(this.board, this.input, this.current)) {
+                        judge.turnTiles(this.board, this.input, this.current);
+                        if (this.current == cell.first_player) {
+                            this.current = cell.second_player;
+                        } else {
+                            this.current = cell.first_player;
+                        }
+                    }
+                } catch (Exception e) {}
+                this.printBoard();
+
+                if (judge.boardIsFull(this.board) ||
+                        (!judge.hasOptions(this.board, cell.first_player) && (!judge.hasOptions(this.board, cell.second_player)))) {
+                    System.exit(0);
+                }
+
+                event.consume();
+            });
+        } catch (Exception e) {}
     }
 
     public void printBoard() {
-        this.board.getChildren().clear();
+        this.getChildren().clear();
 
-        int height = (int)this.board.getPrefHeight();
+        int height = (int)this.getPrefHeight();
 
-        int cellHeight = height / this.getSize();
+        int cellHeight = height / this.board.getSize();
         int cellWidth = cellHeight;
 
         Color cell_collor;
-        int size = this.getSize();
+        int size = this.board.getSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (this.getCell(new Coordinates(i, j)) == cell.empty)
+                if (this.board.getCell(new Coordinates(i, j)) == cell.empty)
                     cell_collor = Color.BEIGE;
                 else {
-                    if (this.getCell(new Coordinates(i, j)) == cell.first_player) {
+                    if (this.board.getCell(new Coordinates(i, j)) == cell.first_player) {
                         cell_collor = this.color_pl1;
                     }
                     else {
                         cell_collor = this.color_pl2;
                     }
                 }
-                this.board.add(new Rectangle(cellWidth, cellHeight, cell_collor), j, i);
+                Rectangle rect = new Rectangle(cellWidth, cellHeight, cell_collor);
+                rect.setStroke(Color.DIMGRAY);
+                rect.setStrokeWidth(0.5);
+                this.add(rect, i, j);
             }
         }
-        this.board.setGridLinesVisible(true);
     }
 
-    public GridPane getBoard() {
+    public Board getBoard() {
         return this.board;
-    }
-
-    public Coordinates getClick() {
-        EventHandler handler = new EventHandler() {
-            @Override
-            public void handle(Event event) {
-
-            }
-
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println(mouseEvent.getX());
-                System.out.println(mouseEvent.getY());
-            }
-        };
-
-        return null;
     }
 }

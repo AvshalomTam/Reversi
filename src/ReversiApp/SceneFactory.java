@@ -6,8 +6,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class SceneFactory {
-    private int width = 800;
-    private int height = 500;
+    private int width = 650;
+    private int height = 410;
 
     public Scene getMainMenuScene() {
         try {
@@ -31,8 +31,8 @@ public class SceneFactory {
 
     public Scene getGameScene() {
         try {
-            HBox set = (HBox) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
-            return new Scene(set, width, height);
+            HBox root = (HBox) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
+            return new Scene(root, width, height);
         } catch (Exception e) {
             System.exit(0);
         }
