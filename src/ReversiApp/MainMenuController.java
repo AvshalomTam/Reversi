@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ReversiController implements Initializable {
+public class MainMenuController implements Initializable {
     @FXML
     private Button setting_button;
     private Stage stage;
@@ -30,7 +30,8 @@ public class ReversiController implements Initializable {
 
         try {
             AnchorPane set = (AnchorPane) FXMLLoader.load(getClass().getResource("SettingsMenu.fxml"));
-            stage.setScene(new Scene(set,800,500));
+            this.stage.setTitle("Settings Menu");
+            this.stage.setScene(new Scene(set,800,500));
         } catch (Exception e) {
             e.printStackTrace();
         }
