@@ -39,32 +39,37 @@ public class ReversiBoard extends GridPane {
         try {
             this.loader.load();
             this.setOnMouseClicked(event -> {
+                GameLogic judge = new BasicRules();
+                if (!judge.hasOptions(this.board, this.current)) {
+                    changePlayers();
+                }
                 int x = (int) event.getX();
                 int y = (int) event.getY();
                 x = (int) (x / (this.getPrefWidth() / this.board.getSize()));
                 y = (int) (y / (this.getPrefHeight() / this.board.getSize()));
                 this.input = new Coordinates(x, y);
-                GameLogic judge = new BasicRules();
                 try {
                     if (judge.isValidChoice(this.board, this.input, this.current)) {
                         judge.turnTiles(this.board, this.input, this.current);
-                        if (this.current == cell.first_player) {
-                            this.current = cell.second_player;
-                        } else {
-                            this.current = cell.first_player;
-                        }
+                        changePlayers();
                     }
                 } catch (Exception e) {}
                 this.printBoard();
-
+                event.consume();
                 if (judge.boardIsFull(this.board) ||
                         (!judge.hasOptions(this.board, cell.first_player) && (!judge.hasOptions(this.board, cell.second_player)))) {
                     System.exit(0);
                 }
-
-                event.consume();
             });
         } catch (Exception e) {}
+    }
+
+    public void changePlayers() {
+        if (this.current == cell.first_player) {
+            this.current = cell.second_player;
+        } else {
+            this.current = cell.first_player;
+        }
     }
 
     public void printBoard() {
