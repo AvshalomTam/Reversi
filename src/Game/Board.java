@@ -1,3 +1,5 @@
+package Game;
+
 public abstract class Board {
     private cell[][] cells_;
     private int size_;
@@ -40,5 +42,5 @@ public abstract class Board {
         return score;
     }
 
-    abstract void printBoard();
+    protected abstract void printBoard();
 }

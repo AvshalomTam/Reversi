@@ -1,3 +1,5 @@
+package Game;
+
 public interface Listener {
     /**
      * Sets the name of the previous player.

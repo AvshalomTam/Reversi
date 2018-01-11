@@ -1,3 +1,5 @@
+package Game;
+
 public class MoveTracker implements Listener {
     private Coordinates previous_move_;
     private String pre_name_;

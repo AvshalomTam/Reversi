@@ -8,6 +8,7 @@
    <children>
       <VBox alignment="CENTER" layoutY="91.0" prefHeight="159.0" prefWidth="255.0" spacing="15.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="100.0">
          <children>
+            <Button fx:id="start_button" mnemonicParsing="false" onAction="#startDefaultGame" onMouseClicked="#startDefaultGame" prefHeight="26.0" prefWidth="95.0" text="Start Game" />
             <Button fx:id="setting_button" mnemonicParsing="false" onAction="#settings" onMouseClicked="#settings" prefHeight="26.0" prefWidth="95.0" text="Settings" />
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exit" onMouseClicked="#exit" prefHeight="26.0" prefWidth="95.0" text="Exit" />
          </children>

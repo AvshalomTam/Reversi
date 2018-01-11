@@ -10,17 +10,9 @@ import javafx.stage.Stage;
 public class main extends Application {
     @Override
     public void start(Stage primaryStage) {
-
-        try {
-            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-            Scene scene = new Scene(root,800,500);
-
-            primaryStage.setTitle("Reversi");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        primaryStage.setTitle("Reversi");
+        primaryStage.setScene(new SceneFactory().getMainMenuScene());
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

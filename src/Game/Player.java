@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * Representing a player in the game.
  */

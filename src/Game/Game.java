@@ -1,3 +1,5 @@
+package Game;
+
 public class Game {
     private Display display_;
     private Board board_; // pointer, so it can point to inherited
@@ -17,9 +19,9 @@ public class Game {
     /**
      * Initializes the board, the players etc.
      */
-    public void initialize() {
-        this.board_ = new CharBoard(4);
-        this.display_ = new ConsoleDisplay();
+    public void initialize(Board board, Display display) {
+        this.board_ = board;
+        this.display_ = display;
         this.judge_ = new BasicRules();
         this.listen_ = new MoveTracker();
         this.pl1_ = new HumanPlayer(cell.first_player, this.board_, this.judge_, this.display_, this.listen_);

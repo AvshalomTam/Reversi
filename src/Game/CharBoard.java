@@ -1,3 +1,5 @@
+package Game;
+
 public class CharBoard extends Board {
     public CharBoard() {
         super(8);

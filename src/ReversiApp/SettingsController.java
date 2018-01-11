@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,19 +59,11 @@ public class SettingsController implements Initializable {
 
     }
     public void startGame() {
-        System.out.println("heyyyy!!");
         if (!this.hasStage) {
-            System.out.println("heyyyy2!!");
             this.stage = (Stage) start_button.getScene().getWindow();
             this.hasStage = true;
         }
-        try {
-            System.out.println("heyyyy3!!");
-            AnchorPane set = (AnchorPane) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
-            this.stage.setTitle("Reversi Game");
-            this.stage.setScene(new Scene(set,800,500));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.stage.setTitle("Reversi Game");
+        this.stage.setScene(new SceneFactory().getGameScene());
     }
 }
