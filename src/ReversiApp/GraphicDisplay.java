@@ -58,6 +58,7 @@ public class GraphicDisplay implements Display {
     public String input() {
         Scanner reader = new Scanner(System.in);
         String s = reader.nextLine();
+
         return s;
     }
 }
