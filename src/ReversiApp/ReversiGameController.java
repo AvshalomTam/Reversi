@@ -22,19 +22,13 @@ public class ReversiGameController implements Initializable {
     @FXML
     private HBox root;
     private ReversiBoard board;
-
+    private InfoController info;
     private int board_size;
     private Color color_pl1;
     private Color color_pl2;
-    private Color starter;
-    private static final Coordinates NO_MOVE = new Coordinates(-1, -1);
-    private GameLogic judge_;
-    private Display display_;
-    private Listener listener;
-    private Player pl1_;
-    private Player pl2_;
-    private boolean frst_player_;
-
+    private String p1Name;
+    private String p2Name;
+    private cell starter;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,13 +41,19 @@ public class ReversiGameController implements Initializable {
                     this.board_size = Integer.parseInt(line.split(":")[1]);
                 }
                 if (line.startsWith("color_pl1")) {
-                    this.color_pl1 = Color.web(line.split(":")[1]);
+                    this.p1Name = line.split(":")[1];
                 }
                 if (line.startsWith("color_pl2")) {
-                    this.color_pl2 = Color.web(line.split(":")[1]);
+                    this.p2Name = line.split(":")[1];
                 }
                 if (line.startsWith("starting")) {
-                    this.starter = Color.web(line.split(":")[1]);
+                    String s = line.split(":")[1];
+                    if (s.equals("1st player")) {
+                        this.starter = cell.first_player;
+                    }
+                    else {
+                        this.starter = cell.second_player;
+                    }
                 }
             }
             bufferedReader.close();
@@ -61,23 +61,45 @@ public class ReversiGameController implements Initializable {
             System.out.println(error.getMessage());
             System.exit(0);
         }
-        this.board = new ReversiBoard(this.board_size, this.color_pl1, this.color_pl2);
+
+        this.info = new InfoController();
+        this.board = new ReversiBoard(this.board_size, Color.web(this.p1Name), Color.web(this.p2Name), info);
+        GameStatus status = new GameStatus(this.board.getBoard(), this.p1Name, this.p2Name, this.starter);
+        this.info.setGameStatus(status);
+        this.board.setGameStatus(status);
         this.board.setPrefWidth(400);
         this.board.setPrefHeight(400);
         root.getChildren().add(0, this.board);
+        root.getChildren().add(1, this.info);
 
         this.board.printBoard();
+        this.info.printInfo();
         root.setOnMouseClicked(this.board.getOnMouseClicked());
+
+        /*root.widthProperty().addListener((observable, oldValue, newValue) -> {
+            double boardNewWidth = newValue.doubleValue() - 120;
+            this.board.setPrefWidth(boardNewWidth);
+            this.info.setPrefWidth(boardNewWidth);
+            this.board.printBoard();
+            this.info.printInfo();
+        });
+
+        root.heightProperty().addListener((observable, oldValue, newValue) -> {
+            this.board.setPrefHeight(newValue.doubleValue());
+            this.info.setPrefHeight(newValue.doubleValue());
+            this.board.printBoard();;
+            this.info.printInfo();
+        });*/
     }
 
 
-
+    /*
     public void initializeGame() {
         //this.display_ = ;
         this.judge_ = new BasicRules();
         this.listener = new MoveTracker();
-        this.pl1_ = new HumanPlayer(cell.first_player, this.board.getBoard(), this.judge_, this.display_, this.listener);
-        this.pl2_ = new HumanPlayer(cell.second_player, this.board.getBoard(), this.judge_, this.display_, this.listener);
+        //this.pl1_ = new HumanPlayer(cell.first_player, this.board.getBoard(), this.judge_, this.display_, this.listener);
+        //this.pl2_ = new HumanPlayer(cell.second_player, this.board.getBoard(), this.judge_, this.display_, this.listener);
         this.pl1_.setName("X");
         this.pl2_.setName("O");
         this.frst_player_ = true;
@@ -118,5 +140,5 @@ public class ReversiGameController implements Initializable {
         if (!NO_MOVE.isEqual(input)) {
             this.judge_.turnTiles(this.board.getBoard(), input, pl.getId());
         }
-    }
+    }*/
 }

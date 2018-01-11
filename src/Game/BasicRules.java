@@ -132,4 +132,16 @@ public class BasicRules implements GameLogic {
         }
         return true;
     }
+
+    public int getScore(Board board, cell player) {
+        int score = 0;
+        for (int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
+                if (board.getCell(new Coordinates(i, j)) == player) {
+                    score++;
+                }
+            }
+        }
+        return score;
+    }
 }

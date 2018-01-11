@@ -39,4 +39,5 @@ public interface GameLogic {
      * @return true if the board is full, false otherwise
      */
     boolean boardIsFull(Board board);
+    int getScore(Board board, cell player);
 }
