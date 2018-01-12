@@ -27,6 +27,8 @@ public class SettingsController implements Initializable {
     private ComboBox who_starts;
     @FXML
     private Button start_button;
+    @FXML
+    private Button back_button;
 
 
     ObservableList<String> board_size_list = FXCollections.observableArrayList("4x4","5x5","6x6",
@@ -84,7 +86,30 @@ public class SettingsController implements Initializable {
         who_starts.setItems(who_starts_list);
 
     }
+
     public void startGame() {
+        this.saveToFile();
+
+        if (!this.hasStage) {
+            this.stage = (Stage) start_button.getScene().getWindow();
+            this.hasStage = true;
+        }
+        this.stage.setTitle("Reversi Game");
+        this.stage.setScene(new SceneFactory().getGameScene());
+    }
+
+    public void backToMenu() {
+        this.saveToFile();
+
+        if (!this.hasStage) {
+            this.stage = (Stage) back_button.getScene().getWindow();
+            this.hasStage = true;
+        }
+        this.stage.setTitle("Reversi");
+        this.stage.setScene(new SceneFactory().getMainMenuScene());
+    }
+
+    public void saveToFile() {
         int size = Integer.parseInt((this.board_size.getValue()).toString().split("x")[0]);
         String color1 = this.first_color.getValue().toString();
         String color2 = this.second_color.getValue().toString();
@@ -106,11 +131,5 @@ public class SettingsController implements Initializable {
             System.out.println(error.getMessage());
             System.exit(0);
         }
-        if (!this.hasStage) {
-            this.stage = (Stage) start_button.getScene().getWindow();
-            this.hasStage = true;
-        }
-        this.stage.setTitle("Reversi Game");
-        this.stage.setScene(new SceneFactory().getGameScene());
     }
 }

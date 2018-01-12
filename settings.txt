@@ -1,4 +1,4 @@
 size:6
-color_pl1:Green
+color_pl1:Yellow
 color_pl2:Red
 starting:1st Player

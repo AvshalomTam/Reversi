@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -22,47 +23,66 @@
                </font>
             </Label>
             <Separator prefHeight="14.0" prefWidth="600.0" />
-         </children>
-      </VBox>
-      <GridPane alignment="CENTER" hgap="10.0" layoutX="125.0" layoutY="106.0" prefHeight="144.0" prefWidth="347.0" vgap="10.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="106.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Board size">
+            <GridPane alignment="CENTER" hgap="10.0" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Board size">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="1st player color" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="2nd player color" textAlignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Who starts?" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="board_size" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="first_color" layoutX="189.0" layoutY="12.0" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="second_color" layoutX="189.0" layoutY="50.0" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="who_starts" layoutX="189.0" layoutY="88.0" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+               <VBox.margin>
+                  <Insets left="80.0" right="50.0" top="20.0" />
+               </VBox.margin>
+            </GridPane>
+            <Button fx:id="start_button" mnemonicParsing="false" onAction="#startGame" onMouseClicked="#startGame" prefHeight="34.0" prefWidth="480.0" text="START GAME">
                <font>
                   <Font size="18.0" />
                </font>
-            </Label>
-            <Label text="1st player color" GridPane.rowIndex="1">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" top="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" right="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="back_button" mnemonicParsing="false" onAction="#backToMenu" onMouseClicked="#backToMenu" prefHeight="34.0" prefWidth="480.0" text="BACK">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" top="20.0" />
+               </VBox.margin>
                <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Label text="2nd player color" textAlignment="CENTER" GridPane.rowIndex="2">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Label text="Who starts?" GridPane.rowIndex="3">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <ComboBox fx:id="board_size" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="first_color" layoutX="189.0" layoutY="12.0" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="second_color" layoutX="189.0" layoutY="50.0" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="who_starts" layoutX="189.0" layoutY="88.0" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Font size="18.0" />
+               </font></Button>
          </children>
-      </GridPane>
-      <Button fx:id="start_button" layoutX="229.0" layoutY="311.0" mnemonicParsing="false" onAction="#startGame" onMouseClicked="#startGame" text="START GAME" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
+      </VBox>
    </children>
 </AnchorPane>
