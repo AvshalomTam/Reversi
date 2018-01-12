@@ -1,8 +1,0 @@
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<HBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="mazeapp.MazeGameController" fx:id="root" spacing="10">
-    <VBox spacing="10">
-        <Button>Start Game.Game</Button>
-        <Button>End Game.Game</Button>
-    </VBox>
-</HBox>

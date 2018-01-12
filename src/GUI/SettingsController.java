@@ -1,4 +1,4 @@
-package ReversiApp;
+package GUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

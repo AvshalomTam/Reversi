@@ -1,16 +1,7 @@
-package ReversiApp;
+package GUI;
 
 import Game.*;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-
-import java.io.IOException;
 
 public class ReversiBoard extends Board {
     private GraphicBoard board;

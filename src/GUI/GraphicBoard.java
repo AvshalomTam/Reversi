@@ -1,4 +1,4 @@
-package ReversiApp;
+package GUI;
 
 import Game.*;
 import javafx.fxml.FXMLLoader;

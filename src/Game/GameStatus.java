@@ -1,4 +1,4 @@
-package ReversiApp;
+package Game;
 
 import Game.BasicRules;
 import Game.Board;
@@ -47,13 +47,6 @@ public class GameStatus {
             return getPl1Name();
         }
         return getPl2Name();
-    }
-
-    public cell getOther() {
-        if (this.current == cell.first_player) {
-            return cell.second_player;
-        }
-        return cell.first_player;
     }
 
     public int getScore(cell player) {

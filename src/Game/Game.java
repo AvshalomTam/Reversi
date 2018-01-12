@@ -1,74 +1,50 @@
 package Game;
 
+import GUI.InfoController;
+import GUI.ReversiGameController;
+
 public class Game {
-    private Display display_;
-    private Board board_; // pointer, so it can point to inherited
-    private Player pl1_; // pointer, so it can point to inherited
-    private Player pl2_; // pointer, so it can point to inherited
-    private GameLogic judge_; // pointer, so it can point to inherited
-    private boolean frst_player_; // boolean telling who's turn it is
-    private Listener listen_;
-    private static final Coordinates NO_MOVE = new Coordinates(-1, -1);
+    private Board board;
+    private GameStatus status;
+    private GameLogic judge;
+    private InfoController info;
 
-    /**
-     * Constructor.
-     */
-    public Game() {
-        this.frst_player_ = true;
+    public void initialize(Board board, GameStatus status, GameLogic judge, InfoController info) {
+        this.board = board;
+        this.status = status;
+        this.judge = judge;
+        this.info = info;
     }
-    /**
-     * Initializes the board, the players etc.
-     */
-    public void initialize(Board board, Display display) {
-        this.board_ = board;
-        this.display_ = display;
-        this.judge_ = new BasicRules();
-        this.listen_ = new MoveTracker();
-        this.pl1_ = new HumanPlayer(cell.first_player, this.board_, this.judge_, this.display_, this.listen_);
-        this.pl2_ = new HumanPlayer(cell.second_player, this.board_, this.judge_, this.display_, this.listen_);
-        this.pl1_.setName("X");
-        this.pl2_.setName("O");
-    }
-    /**
-     * Runs the game.
-     */
-    public void run() {
-        do {
-            if (this.frst_player_) {
-                this.playOneTurn(this.pl1_);
-            } else {
-                this.playOneTurn(this.pl2_);
-            }
-            this.frst_player_ = !this.frst_player_;
-        } while ((this.pl1_.played() || this.pl2_.played()) && !this.judge_.boardIsFull(this.board_));
 
-        this.board_.printBoard();
-        //printing the game results
-        cell winner = this.judge_.checkWinner(this.board_);
-        if (winner == cell.empty) {
-            this.display_.printResult("draw");
-        }
-        else {
-            if (winner == cell.first_player) {
-                this.display_.printResult(this.pl1_.getName());
+    public void run(ReversiGameController controller) {
+        controller.setMouseInput();
+    }
+
+    public void playOneTurn(Coordinates move) {
+        try {
+            if (judge.isValidChoice(this.board, move, this.status.getCurrent())) {
+                judge.turnTiles(this.board, move, this.status.getCurrent());
+                this.status.changePlayers();
             }
             else {
-                this.display_.printResult(this.pl2_.getName());
+                if (!judge.hasOptions(this.board, this.status.getCurrent())) {
+                    this.status.changePlayers();
+                }
             }
-        }
+            printScreen();
+            if (judge.boardIsFull(this.board) ||
+                    (!judge.hasOptions(this.board, cell.first_player) && (!judge.hasOptions(this.board, cell.second_player)))) {
+                endGame();
+            }
+        } catch (Exception e) {}
     }
-    /**
-     * Player plays a turn.
-     * @param pl reference to player
-     */
-    public void playOneTurn(Player pl) {
-        this.display_.printCurrentBoard(this.board_);
 
-        pl.message();
+    public void printScreen() {
+        this.info.printInfo();
+        this.board.printBoard();
+    }
 
-        Coordinates input = pl.getMove();
-        if (!NO_MOVE.isEqual(input)) {
-            this.judge_.turnTiles(this.board_, input, pl.getId());
-        }
+    public void endGame() {
+        System.exit(0);
     }
 }

@@ -1,7 +1,6 @@
-package ReversiApp;
+package GUI;
 
-import Game.BasicRules;
-import Game.GameLogic;
+import Game.GameStatus;
 import Game.cell;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
