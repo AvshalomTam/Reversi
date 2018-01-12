@@ -21,7 +21,8 @@ import java.util.Scanner;
 public class ReversiGameController implements Initializable {
     @FXML
     private HBox root;
-    private ReversiBoard board;
+    private GridPane grid;
+    private Board board;
     private InfoController info;
     private int board_size;
     private Color color_pl1;
@@ -62,19 +63,32 @@ public class ReversiGameController implements Initializable {
             System.exit(0);
         }
 
-        this.info = new InfoController();
-        this.board = new ReversiBoard(this.board_size, Color.web(this.p1Name), Color.web(this.p2Name), info);
-        GameStatus status = new GameStatus(this.board.getBoard(), this.p1Name, this.p2Name, this.starter);
-        this.info.setGameStatus(status);
-        this.board.setGameStatus(status);
-        this.board.setPrefWidth(400);
-        this.board.setPrefHeight(400);
-        root.getChildren().add(0, this.board);
+        GameStatus status = new GameStatus();
+        this.info = new InfoController(status);
+        ReversiBoard board = new ReversiBoard(this.board_size, Color.web(this.p1Name), Color.web(this.p2Name), info, status);
+
+        this.grid = board.getGraphicBoard();
+        this.grid.setPrefHeight(400);
+        this.grid.setPrefWidth(400);
+
+        this.board = board;
+
+        status.setInfo(this.board, new BasicRules(), this.p1Name, this.p2Name, this.starter);
+
+        root.getChildren().add(0, board.getGraphicBoard());
         root.getChildren().add(1, this.info);
 
         this.board.printBoard();
         this.info.printInfo();
-        root.setOnMouseClicked(this.board.getOnMouseClicked());
+
+        Game game = new Game();
+        game.initialize(this.board, status, new BasicRules(), this.info);
+        board.getGraphicBoard().setGame(game);
+        game.run(this);
+    }
+
+    public void setMouseInput() {
+        root.setOnMouseClicked(this.grid.getOnMouseClicked());
 
         /*root.widthProperty().addListener((observable, oldValue, newValue) -> {
             double boardNewWidth = newValue.doubleValue() - 120;
@@ -91,54 +105,4 @@ public class ReversiGameController implements Initializable {
             this.info.printInfo();
         });*/
     }
-
-
-    /*
-    public void initializeGame() {
-        //this.display_ = ;
-        this.judge_ = new BasicRules();
-        this.listener = new MoveTracker();
-        //this.pl1_ = new HumanPlayer(cell.first_player, this.board.getBoard(), this.judge_, this.display_, this.listener);
-        //this.pl2_ = new HumanPlayer(cell.second_player, this.board.getBoard(), this.judge_, this.display_, this.listener);
-        this.pl1_.setName("X");
-        this.pl2_.setName("O");
-        this.frst_player_ = true;
-    }
-
-    public void run() {
-        do {
-            if (this.frst_player_) {
-                this.playOneTurn(this.pl1_);
-            } else {
-                this.playOneTurn(this.pl2_);
-            }
-            this.frst_player_ = !this.frst_player_;
-        } while ((this.pl1_.played() || this.pl2_.played()) && !this.judge_.boardIsFull(this.board.getBoard()));
-
-        this.board.printBoard();
-        //printing the game results
-        cell winner = this.judge_.checkWinner(this.board.getBoard());
-        if (winner == cell.empty) {
-            this.display_.printResult("draw");
-        }
-        else {
-            if (winner == cell.first_player) {
-                this.display_.printResult(this.pl1_.getName());
-            }
-            else {
-                this.display_.printResult(this.pl2_.getName());
-            }
-        }
-    }
-
-    public void playOneTurn(Player pl) {
-        this.board.printBoard();
-
-        pl.message();
-
-        Coordinates input = pl.getMove();
-        if (!NO_MOVE.isEqual(input)) {
-            this.judge_.turnTiles(this.board.getBoard(), input, pl.getId());
-        }
-    }*/
 }

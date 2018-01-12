@@ -4,6 +4,8 @@ public abstract class Board {
     private cell[][] cells_;
     private int size_;
 
+    public Board() {}
+
     public Board(int size) {
         this.size_ = size;
         this.cells_ = new cell[size][size];
@@ -42,5 +44,5 @@ public abstract class Board {
         return score;
     }
 
-    protected abstract void printBoard();
+    public abstract void printBoard();
 }

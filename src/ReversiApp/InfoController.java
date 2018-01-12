@@ -13,7 +13,8 @@ public class InfoController extends VBox {
     private FXMLLoader loader;
     public GameStatus status;
 
-    public InfoController() {
+    public InfoController(GameStatus status) {
+        this.status = status;
         this.loader = new FXMLLoader(getClass().getResource("Info.fxml"));
         this.loader.setRoot(this);
         this.loader.setController(this);
@@ -36,9 +37,5 @@ public class InfoController extends VBox {
 
         lbl = new Label(this.status.getPl2Name() + " player score is: " + this.status.getScore(cell.second_player));
         this.getChildren().add(2, lbl);
-    }
-
-    public void setGameStatus(GameStatus status) {
-        this.status = status;
     }
 }

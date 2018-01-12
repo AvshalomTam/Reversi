@@ -12,12 +12,14 @@ public class GameStatus {
     private String pl1_name;
     private String pl2_name;
 
-    public GameStatus(Board board, String p1, String p2, cell current ) {
+    public GameStatus() {}
+
+    public void setInfo(Board board, GameLogic judge, String p1_name, String p2_name, cell starter) {
         this.board = board;
-        this.judge = new BasicRules();
-        this.pl1_name = p1;
-        this.pl2_name = p2;
-        this.current = current;
+        this.judge = judge;
+        this.pl1_name = p1_name;
+        this.pl2_name = p2_name;
+        this.current = starter;
     }
 
     public void changePlayers() {
@@ -45,6 +47,13 @@ public class GameStatus {
             return getPl1Name();
         }
         return getPl2Name();
+    }
+
+    public cell getOther() {
+        if (this.current == cell.first_player) {
+            return cell.second_player;
+        }
+        return cell.first_player;
     }
 
     public int getScore(cell player) {
