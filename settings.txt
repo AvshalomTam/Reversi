@@ -1,4 +1,4 @@
-size:5
-color_pl1:Brown
-color_pl2:Pink
+size:6
+color_pl1:Black
+color_pl2:Red
 starting:1st Player
