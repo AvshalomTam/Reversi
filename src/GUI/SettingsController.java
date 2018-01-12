@@ -43,6 +43,8 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //this.start_button.setMaxWidth(10000);
+        //this.back_button.setMaxWidth(10000);
         int size = 0;
         String c_first = "";
         String c_second = "";

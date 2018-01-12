@@ -12,18 +12,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SettingsController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SettingsController">
    <children>
       <VBox layoutX="50.0" layoutY="34.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Separator prefHeight="14.0" prefWidth="600.0" />
-            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="70.0" prefWidth="600.0" text="Please choose your preferences ">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="600.0" text="Please choose your preferences " VBox.vgrow="ALWAYS">
                <font>
-                  <Font size="24.0" />
+                  <Font size="30.0" />
                </font>
             </Label>
             <Separator prefHeight="14.0" prefWidth="600.0" />
-            <GridPane alignment="CENTER" hgap="10.0" vgap="10.0">
+            <GridPane alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -35,54 +35,63 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Board size">
+                  <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="Board size">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="1st player color" GridPane.rowIndex="1">
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="1st player color" GridPane.rowIndex="1">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="2nd player color" textAlignment="CENTER" GridPane.rowIndex="2">
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="2nd player color" textAlignment="CENTER" GridPane.rowIndex="2">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Who starts?" GridPane.rowIndex="3">
+                  <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Who starts?" GridPane.rowIndex="3">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="board_size" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" />
-                  <ComboBox fx:id="first_color" layoutX="189.0" layoutY="12.0" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="second_color" layoutX="189.0" layoutY="50.0" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ComboBox fx:id="who_starts" layoutX="189.0" layoutY="88.0" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="board_size" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="first_color" layoutX="189.0" layoutY="12.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="second_color" layoutX="189.0" layoutY="50.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="who_starts" layoutX="189.0" layoutY="88.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
                <VBox.margin>
                   <Insets left="80.0" right="50.0" top="20.0" />
                </VBox.margin>
             </GridPane>
-            <Button fx:id="start_button" mnemonicParsing="false" onAction="#startGame" onMouseClicked="#startGame" prefHeight="34.0" prefWidth="480.0" text="START GAME">
+            <Button fx:id="start_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startGame" onMouseClicked="#startGame" prefHeight="35.0" prefWidth="340.0" text="START GAME" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets left="50.0" right="50.0" top="20.0" />
+                  <Insets bottom="1.0" left="50.0" right="50.0" top="20.0" />
                </VBox.margin>
                <padding>
                   <Insets left="50.0" right="50.0" />
                </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Button>
-            <Button fx:id="back_button" mnemonicParsing="false" onAction="#backToMenu" onMouseClicked="#backToMenu" prefHeight="34.0" prefWidth="480.0" text="BACK">
+            <Button fx:id="back_button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToMenu" onMouseClicked="#backToMenu" prefHeight="35.0" prefWidth="340.0" text="SAVE CHANGES" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets left="50.0" right="50.0" top="20.0" />
+                  <Insets bottom="10.0" left="50.0" right="50.0" top="20.0" />
                </VBox.margin>
                <font>
                   <Font size="18.0" />
-               </font></Button>
+               </font>
+               <opaqueInsets>
+                  <Insets bottom="40.0" />
+               </opaqueInsets></Button>
          </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>
