@@ -80,21 +80,21 @@ public class ReversiGameController implements Initializable {
     }
 
     public void setMouseInput() {
-        root.setOnMouseClicked(this.grid.getOnMouseClicked());
-
         /*root.widthProperty().addListener((observable, oldValue, newValue) -> {
-            double boardNewWidth = newValue.doubleValue() - 120;
-            this.board.setPrefWidth(boardNewWidth);
-            this.info.setPrefWidth(boardNewWidth);
+            this.grid.setPrefWidth(newValue.doubleValue() - 250);
+            this.info.setPrefWidth(newValue.doubleValue());
             this.board.printBoard();
             this.info.printInfo();
-        });
+        });*/
 
         root.heightProperty().addListener((observable, oldValue, newValue) -> {
-            this.board.setPrefHeight(newValue.doubleValue());
+            this.grid.setPrefHeight(newValue.doubleValue() - 10);
+            this.grid.setPrefWidth(newValue.doubleValue() - 10);
             this.info.setPrefHeight(newValue.doubleValue());
             this.board.printBoard();;
             this.info.printInfo();
-        });*/
+        });
+
+        root.setOnMouseClicked(this.grid.getOnMouseClicked());
     }
 }
