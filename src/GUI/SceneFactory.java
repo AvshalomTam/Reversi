@@ -12,7 +12,7 @@ public class SceneFactory {
     public Scene getMainMenuScene() {
         try {
             AnchorPane set = (AnchorPane) FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-            return new Scene(set, width, height);
+            return new Scene(set, width   ,height);
         } catch (Exception e) {
             System.exit(0);
         }

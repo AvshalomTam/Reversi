@@ -3,6 +3,7 @@ package GUI;
 import Game.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -49,9 +50,7 @@ public class GraphicBoard extends GridPane {
     
     public void drawOn(Board board) {
         this.getChildren().clear();
-
         int height = (int)this.getPrefHeight();
-
         int cellHeight = height / board.getSize();
         int cellWidth = cellHeight;
 
