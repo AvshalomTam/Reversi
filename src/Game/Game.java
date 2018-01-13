@@ -8,8 +8,10 @@ public class Game {
     private GameStatus status;
     private GameLogic judge;
     private InfoController info;
+    private ReversiGameController controller;
 
-    public void initialize(Board board, GameStatus status, GameLogic judge, InfoController info) {
+    public void initialize(ReversiGameController controller, Board board, GameStatus status, GameLogic judge, InfoController info) {
+        this.controller = controller;
         this.board = board;
         this.status = status;
         this.judge = judge;
@@ -45,6 +47,6 @@ public class Game {
     }
 
     public void endGame() {
-        System.exit(0);
+        this.info.endOfGame();
     }
 }

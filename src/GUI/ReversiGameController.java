@@ -19,8 +19,6 @@ public class ReversiGameController implements Initializable {
     private Board board;
     private InfoController info;
     private int board_size;
-    private Color color_pl1;
-    private Color color_pl2;
     private String p1Name;
     private String p2Name;
     private cell starter;
@@ -43,7 +41,7 @@ public class ReversiGameController implements Initializable {
                 }
                 if (line.startsWith("starting")) {
                     String s = line.split(":")[1];
-                    if (s.equals("1st player")) {
+                    if (s.equals("1st Player")) {
                         this.starter = cell.first_player;
                     }
                     else {
@@ -76,7 +74,7 @@ public class ReversiGameController implements Initializable {
         this.info.printInfo();
 
         Game game = new Game();
-        game.initialize(this.board, status, new BasicRules(), this.info);
+        game.initialize(this, this.board, status, new BasicRules(), this.info);
         board.getGraphicBoard().setGame(game);
         game.run(this);
     }

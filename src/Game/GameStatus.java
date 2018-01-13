@@ -52,4 +52,15 @@ public class GameStatus {
     public int getScore(cell player) {
         return this.judge.getScore(this.board, player);
     }
+
+    public String getWinner() {
+        cell winner = this.judge.checkWinner(this.board);
+        if (winner == cell.first_player) {
+            return this.pl1_name + " wins the game!";
+        }
+        if (winner == cell.second_player) {
+            return this.pl2_name + " wins the game!";
+        }
+        return "It's a draw game!!";
+    }
 }
