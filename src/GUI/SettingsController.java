@@ -1,4 +1,6 @@
 package GUI;
+import Game.Game;
+import Game.GameSettings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,46 +45,19 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int size = 0;
-        String c_first = "";
-        String c_second = "";
-        String starter = "";
-
-        try {
-            FileReader reader = new FileReader("settings.txt");
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                if (line.startsWith("size")) {
-                    size = Integer.parseInt(line.split(":")[1]);
-                }
-                if (line.startsWith("color_pl1")) {
-                    c_first = line.split(":")[1];
-                }
-                if (line.startsWith("color_pl2")) {
-                    c_second = line.split(":")[1];
-                }
-                if (line.startsWith("starting")) {
-                    starter = line.split(":")[1];
-                }
-            }
-            bufferedReader.close();
-        } catch (Exception error) {
-            System.out.println(error.getMessage());
-            System.exit(0);
-        }
+        GameSettings settings = GameSettings.getInstance();
         this.hasStage = false;
         //board size
-        board_size.setValue(size + "x" + size);
+        board_size.setValue(settings.getBoardSize() + "x" + settings.getBoardSize());
         board_size.setItems(board_size_list);
         //color first player
-        first_color.setValue(c_first);
+        first_color.setValue(settings.getPl1());
         first_color.setItems(first_color_list);
         //color second player
-        second_color.setValue(c_second);
+        second_color.setValue(settings.getPl2());
         second_color.setItems(second_color_list);
         //who starts?
-        who_starts.setValue(starter);
+        who_starts.setValue(settings.getStarterName());
         who_starts.setItems(who_starts_list);
 
     }
@@ -115,21 +90,6 @@ public class SettingsController implements Initializable {
         String color2 = this.second_color.getValue().toString();
         String starter = this.who_starts.getValue().toString();
 
-        try {
-            FileWriter writer = new FileWriter("settings.txt");
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write("size:" + size);
-            bufferedWriter.newLine();
-            bufferedWriter.write("color_pl1:" + color1);
-            bufferedWriter.newLine();
-            bufferedWriter.write("color_pl2:" + color2);
-            bufferedWriter.newLine();
-            bufferedWriter.write("starting:" + starter);
-            bufferedWriter.close();
-
-        } catch (Exception error) {
-            System.out.println(error.getMessage());
-            System.exit(0);
-        }
+        GameSettings.getInstance().saveToFile(size, color1, color2, starter);
     }
 }

@@ -7,8 +7,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,46 +16,13 @@ public class ReversiGameController implements Initializable {
     private GridPane grid;
     private Board board;
     private InfoController info;
-    private int board_size;
-    private String p1Name;
-    private String p2Name;
-    private cell starter;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            FileReader reader = new FileReader("settings.txt");
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                if (line.startsWith("size")) {
-                    this.board_size = Integer.parseInt(line.split(":")[1]);
-                }
-                if (line.startsWith("color_pl1")) {
-                    this.p1Name = line.split(":")[1];
-                }
-                if (line.startsWith("color_pl2")) {
-                    this.p2Name = line.split(":")[1];
-                }
-                if (line.startsWith("starting")) {
-                    String s = line.split(":")[1];
-                    if (s.equals("1st Player")) {
-                        this.starter = cell.first_player;
-                    }
-                    else {
-                        this.starter = cell.second_player;
-                    }
-                }
-            }
-            bufferedReader.close();
-        } catch (Exception error) {
-            System.out.println(error.getMessage());
-            System.exit(0);
-        }
-
+        GameSettings settings = GameSettings.getInstance();
         GameStatus status = new GameStatus();
         this.info = new InfoController(status);
-        ReversiBoard board = new ReversiBoard(this.board_size, Color.web(this.p1Name), Color.web(this.p2Name), info, status);
+        ReversiBoard board = new ReversiBoard(settings.getBoardSize(), Color.web(settings.getPl1()), Color.web(settings.getPl2()), info, status);
 
         this.grid = board.getGraphicBoard();
         this.grid.setPrefHeight(400);
@@ -65,7 +30,7 @@ public class ReversiGameController implements Initializable {
 
         this.board = board;
 
-        status.setInfo(this.board, new BasicRules(), this.p1Name, this.p2Name, this.starter);
+        status.setInfo(this.board, new BasicRules(), settings.getPl1(), settings.getPl2(), settings.getStarter());
 
         root.getChildren().add(0, board.getGraphicBoard());
         root.getChildren().add(1, this.info);
@@ -80,13 +45,6 @@ public class ReversiGameController implements Initializable {
     }
 
     public void setMouseInput() {
-        /*root.widthProperty().addListener((observable, oldValue, newValue) -> {
-            this.grid.setPrefWidth(newValue.doubleValue() - 250);
-            this.info.setPrefWidth(newValue.doubleValue());
-            this.board.printBoard();
-            this.info.printInfo();
-        });*/
-
         root.heightProperty().addListener((observable, oldValue, newValue) -> {
             this.grid.setPrefHeight(newValue.doubleValue() - 10);
             this.grid.setPrefWidth(newValue.doubleValue() - 10);
