@@ -1,5 +1,4 @@
 package GUI;
-import Game.Game;
 import Game.GameSettings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,17 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
     private Stage stage;
-    private boolean hasStage;
     @FXML
     private ComboBox board_size;
     @FXML
@@ -31,6 +24,7 @@ public class SettingsController implements Initializable {
     private Button start_button;
     @FXML
     private Button back_button;
+    private boolean hasStage;
 
 
     ObservableList<String> board_size_list = FXCollections.observableArrayList("4x4","5x5","6x6",
@@ -45,8 +39,8 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GameSettings settings = GameSettings.getInstance();
         this.hasStage = false;
+        GameSettings settings = GameSettings.getInstance();
         //board size
         board_size.setValue(settings.getBoardSize() + "x" + settings.getBoardSize());
         board_size.setItems(board_size_list);
@@ -66,22 +60,22 @@ public class SettingsController implements Initializable {
         this.saveToFile();
 
         if (!this.hasStage) {
-            this.stage = (Stage) start_button.getScene().getWindow();
             this.hasStage = true;
+            this.stage = (Stage) start_button.getScene().getWindow();
         }
         this.stage.setTitle("Reversi Game");
-        this.stage.setScene(new SceneFactory().getGameScene());
+        this.stage.setScene(new SceneFactory().getGameScene(this.stage.getWidth(), this.stage.getHeight()));
     }
 
     public void backToMenu() {
         this.saveToFile();
 
         if (!this.hasStage) {
-            this.stage = (Stage) back_button.getScene().getWindow();
             this.hasStage = true;
+            this.stage = (Stage) back_button.getScene().getWindow();
         }
         this.stage.setTitle("Reversi");
-        this.stage.setScene(new SceneFactory().getMainMenuScene());
+        this.stage.setScene(new SceneFactory().getMainMenuScene(this.stage.getWidth(), this.stage.getHeight()));
     }
 
     public void saveToFile() {

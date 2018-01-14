@@ -49,7 +49,7 @@ public class InfoController extends VBox {
         this.btn.setOnAction(event -> {
             Stage stage = (Stage) this.btn.getScene().getWindow();
             stage.setTitle("Reversi");
-            stage.setScene(new SceneFactory().getMainMenuScene());
+            stage.setScene(new SceneFactory().getMainMenuScene(stage.getWidth(), stage.getHeight()));
         });
         this.getChildren().add(3, this.btn);
 
@@ -86,7 +86,7 @@ public class InfoController extends VBox {
         this.btn.setOnAction(event -> {
             Stage stage = (Stage) this.btn.getScene().getWindow();
             stage.setTitle("Reversi");
-            stage.setScene(new SceneFactory().getMainMenuScene());
+            stage.setScene(new SceneFactory().getMainMenuScene(stage.getWidth(), stage.getHeight()));
         });
         this.getChildren().add(3, this.btn);
 

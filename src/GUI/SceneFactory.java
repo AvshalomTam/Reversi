@@ -6,30 +6,30 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class SceneFactory {
-    private int width = 650;
-    private int height = 410;
+    private double width = 650;
+    private double height = 410;
 
-    public Scene getMainMenuScene() {
+    public Scene getMainMenuScene(double width, double height) {
         try {
             AnchorPane set = (AnchorPane) FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-            return new Scene(set, width   ,height);
+            return new Scene(set, width, height);
         } catch (Exception e) {
             System.exit(0);
         }
         return null;
     }
 
-    public Scene getSettingsScene() {
+    public Scene getSettingsScene(double width, double height) {
         try {
             AnchorPane set = (AnchorPane) FXMLLoader.load(getClass().getResource("SettingsMenu.fxml"));
-            return new Scene(set,width, height);
+            return new Scene(set, width, height);
         } catch (Exception e) {
             System.exit(0);
         }
         return null;
     }
 
-    public Scene getGameScene() {
+    public Scene getGameScene(double width, double height) {
         try {
             HBox root = (HBox) FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
             return new Scene(root, width, height);
