@@ -64,7 +64,9 @@ public class SettingsController implements Initializable {
             this.stage = (Stage) start_button.getScene().getWindow();
         }
         this.stage.setTitle("Reversi Game");
-        this.stage.setScene(new SceneFactory().getGameScene(this.stage.getWidth(), this.stage.getHeight()));
+        double width = this.start_button.getScene().getWidth();
+        double height = this.start_button.getScene().getHeight();
+        this.stage.setScene(new SceneFactory().getGameScene(width, height));
     }
 
     public void backToMenu() {
@@ -75,7 +77,9 @@ public class SettingsController implements Initializable {
             this.stage = (Stage) back_button.getScene().getWindow();
         }
         this.stage.setTitle("Reversi");
-        this.stage.setScene(new SceneFactory().getMainMenuScene(this.stage.getWidth(), this.stage.getHeight()));
+        double width = this.back_button.getScene().getWidth();
+        double height = this.back_button.getScene().getHeight();
+        this.stage.setScene(new SceneFactory().getMainMenuScene(width, height));
     }
 
     public void saveToFile() {

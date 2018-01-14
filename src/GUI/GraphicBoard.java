@@ -2,12 +2,18 @@ package GUI;
 
 import Game.*;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.NodeOrientation;
+import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GraphicBoard extends GridPane {
     private Color color_pl1;
@@ -17,8 +23,10 @@ public class GraphicBoard extends GridPane {
     public GameStatus status;
     public InfoController info_controller;
     private Game game;
+    private Board board;
 
     public GraphicBoard(Board board, Color colorPl1, Color colorPl2, InfoController info, GameStatus status) {
+        this.board = board;
         this.status = status;
         this.color_pl1 = colorPl1;
         this.color_pl2 = colorPl2;
@@ -48,35 +56,49 @@ public class GraphicBoard extends GridPane {
     }
         
     
-    public void drawOn(Board board) {
+    public void drawOn() {
         this.getChildren().clear();
         int height = (int)this.getPrefHeight();
         int cellHeight = height / board.getSize();
-        int cellWidth = cellHeight;
 
-        Color cell_collor;
+        Rectangle rect;
+        Circle circle;
         int size = board.getSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (board.getCell(new Coordinates(i, j)) == cell.empty)
-                    cell_collor = Color.BEIGE;
-                else {
-                    if (board.getCell(new Coordinates(i, j)) == cell.first_player) {
-                        cell_collor = this.color_pl1;
-                    }
-                    else {
-                        cell_collor = this.color_pl2;
-                    }
-                }
-                Rectangle rect = new Rectangle(cellWidth, cellHeight, cell_collor);
+                rect = new Rectangle(cellHeight, cellHeight, Color.ANTIQUEWHITE);
                 rect.setStroke(Color.DIMGRAY);
                 rect.setStrokeWidth(0.5);
                 this.add(rect, i, j);
+                if (board.getCell(new Coordinates(i, j)) != cell.empty) {
+                    if (board.getCell(new Coordinates(i, j)) == cell.first_player) {
+                        circle = new Circle(0.4 * cellHeight, this.color_pl1);
+                        setHalignment(circle, HPos.CENTER);
+                        this.add(circle, i, j);
+                    }
+                    else {
+                        circle = new Circle(0.4 * cellHeight, this.color_pl2);
+                        setHalignment(circle, HPos.CENTER);
+                        this.add(circle, i, j);
+                    }
+                }
             }
         }
     }
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public void drawOptions(ArrayList<Coordinates> options) {
+        int height = (int)this.getPrefHeight();
+        int cellHeight = height / board.getSize();
+        Circle circle;
+        for (Coordinates option : options) {
+            circle = new Circle(0.4 * cellHeight, Color.ANTIQUEWHITE);
+            setHalignment(circle, HPos.CENTER);
+            circle.setStroke(Color.GOLD);
+            this.add(circle, option.getX(), option.getY());
+        }
     }
 }

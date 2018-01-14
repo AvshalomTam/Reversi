@@ -6,9 +6,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class SceneFactory {
-    private double width = 650;
-    private double height = 410;
-
     public Scene getMainMenuScene(double width, double height) {
         try {
             AnchorPane set = (AnchorPane) FXMLLoader.load(getClass().getResource("MainMenu.fxml"));

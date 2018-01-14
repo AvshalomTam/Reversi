@@ -9,7 +9,7 @@ public class main extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Reversi");
-        primaryStage.setScene(new SceneFactory().getMainMenuScene(650, 410));
+        primaryStage.setScene(new SceneFactory().getMainMenuScene(700, 410));
         primaryStage.show();
     }
 

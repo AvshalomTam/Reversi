@@ -8,14 +8,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ReversiGameController implements Initializable {
     @FXML
     private HBox root;
-    private GridPane grid;
+    private GraphicBoard grid;
     private Board board;
     private InfoController info;
+    private Game game;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,10 +40,10 @@ public class ReversiGameController implements Initializable {
         this.board.printBoard();
         this.info.printInfo();
 
-        Game game = new Game();
-        game.initialize(this, this.board, status, new BasicRules(), this.info);
+        this.game = new Game();
+        this.game.initialize(this, this.board, status, new BasicRules(), this.info);
         board.getGraphicBoard().setGame(game);
-        game.run(this);
+        this.game.run();
     }
 
     public void setMouseInput() {
@@ -49,8 +51,8 @@ public class ReversiGameController implements Initializable {
             this.grid.setPrefHeight(newValue.doubleValue() - 10);
             this.grid.setPrefWidth(newValue.doubleValue() - 10);
             this.info.setPrefHeight(newValue.doubleValue());
-            this.board.printBoard();;
-            this.info.printInfo();
+            this.game.printScreen();
+            this.game.printOptions();
         });
 
         root.setOnMouseClicked(this.grid.getOnMouseClicked());

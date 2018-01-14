@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.ArrayList;
+
 public abstract class Board {
     private cell[][] cells_;
     private int size_;
@@ -45,4 +47,6 @@ public abstract class Board {
     }
 
     public abstract void printBoard();
+
+    public abstract void showOptions(ArrayList<Coordinates> options);
 }

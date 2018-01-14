@@ -3,9 +3,12 @@ package GUI;
 import Game.GameStatus;
 import Game.cell;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -49,7 +52,9 @@ public class InfoController extends VBox {
         this.btn.setOnAction(event -> {
             Stage stage = (Stage) this.btn.getScene().getWindow();
             stage.setTitle("Reversi");
-            stage.setScene(new SceneFactory().getMainMenuScene(stage.getWidth(), stage.getHeight()));
+            double width = this.btn.getScene().getWidth();
+            double height = this.btn.getScene().getHeight();
+            stage.setScene(new SceneFactory().getMainMenuScene(width, height));
         });
         this.getChildren().add(3, this.btn);
 
@@ -60,6 +65,7 @@ public class InfoController extends VBox {
         this.btn.setOnAction(event -> {
             System.exit(0);
         });
+        VBox.setMargin(this.btn, new Insets(0, 0, 20, 0));
         this.getChildren().add(4, this.btn);
     }
 
@@ -86,7 +92,9 @@ public class InfoController extends VBox {
         this.btn.setOnAction(event -> {
             Stage stage = (Stage) this.btn.getScene().getWindow();
             stage.setTitle("Reversi");
-            stage.setScene(new SceneFactory().getMainMenuScene(stage.getWidth(), stage.getHeight()));
+            double width = this.btn.getScene().getWidth();
+            double height = this.btn.getScene().getHeight();
+            stage.setScene(new SceneFactory().getMainMenuScene(width, height));
         });
         this.getChildren().add(3, this.btn);
 
@@ -98,5 +106,13 @@ public class InfoController extends VBox {
             System.exit(0);
         });
         this.getChildren().add(4, this.btn);
+    }
+
+    public void noMove() {
+        Label lbl = new Label("No Move. Play passes to other player.\nClick anywhere on the board.");
+        lbl.setFont(new Font(15));
+        lbl.setTextFill(Color.RED);
+        lbl.setPrefHeight(340);
+        this.getChildren().add(3, lbl);
     }
 }

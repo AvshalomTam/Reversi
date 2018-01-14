@@ -4,6 +4,7 @@ import Game.BasicRules;
 import Game.Board;
 import Game.GameLogic;
 import Game.cell;
+import javafx.scene.paint.Color;
 
 public class GameStatus {
     private cell current;
