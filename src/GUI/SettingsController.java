@@ -60,6 +60,9 @@ public class SettingsController implements Initializable {
         who_starts.setItems(who_starts_list);
     }
 
+    /**
+     * Starting a game according to the settings the player selected.
+     */
     public void startGame() {
         if (haveSameColors()) {
             errorSameColors();
@@ -77,6 +80,9 @@ public class SettingsController implements Initializable {
         this.stage.setScene(new SceneFactory().getGameScene(width, height));
     }
 
+    /**
+     * Saving the settings and returning back to main menu.
+     */
     public void backToMenu() {
         if (haveSameColors()) {
             errorSameColors();
@@ -94,6 +100,9 @@ public class SettingsController implements Initializable {
         this.stage.setScene(new SceneFactory().getMainMenuScene(width, height));
     }
 
+    /**
+     * Saving the settings.
+     */
     public void saveToFile() {
         int size = Integer.parseInt((this.board_size.getValue()).toString().split("x")[0]);
         String color1 = this.first_color.getValue().toString();
@@ -103,12 +112,19 @@ public class SettingsController implements Initializable {
         GameSettings.getInstance().saveToFile(size, color1, color2, starter);
     }
 
+    /**
+     * Checking if the two players chose the same color.
+     * @return true if they the smae, false otherwise
+     */
     public boolean haveSameColors() {
         String color1 = this.first_color.getValue().toString();
         String color2 = this.second_color.getValue().toString();
         return color1.equals(color2);
     }
 
+    /**
+     * Indicating the user that there's an error with his choice of color.
+     */
     public void errorSameColors() {
         this.first_color.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         this.second_color.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));

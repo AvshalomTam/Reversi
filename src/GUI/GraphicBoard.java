@@ -3,15 +3,10 @@ package GUI;
 import Game.*;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
-import javafx.geometry.NodeOrientation;
-import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -25,6 +20,14 @@ public class GraphicBoard extends GridPane {
     private Game game;
     private Board board;
 
+    /**
+     * Constructor.
+     * @param board game board
+     * @param colorPl1 color of first player
+     * @param colorPl2 color of second player
+     * @param info info of the game (on the right of the screen)
+     * @param status status of game
+     */
     public GraphicBoard(Board board, Color colorPl1, Color colorPl2, InfoController info, GameStatus status) {
         this.board = board;
         this.status = status;
@@ -54,8 +57,11 @@ public class GraphicBoard extends GridPane {
             });
         } catch (Exception e) {}
     }
-        
-    
+
+
+    /**
+     * Draws the board on the screen.
+     */
     public void drawOn() {
         this.getChildren().clear();
         int height = (int)this.getPrefHeight();
@@ -90,6 +96,10 @@ public class GraphicBoard extends GridPane {
         this.game = game;
     }
 
+    /**
+     * Draws the list of options the player has.
+     * @param options list of options
+     */
     public void drawOptions(ArrayList<Coordinates> options) {
         int height = (int)this.getPrefHeight();
         int cellHeight = height / board.getSize();

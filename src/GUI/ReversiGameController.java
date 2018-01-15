@@ -44,6 +44,9 @@ public class ReversiGameController implements Initializable, Display {
         this.game.run();
     }
 
+    /**
+     * Enabeling mouse input on the board.
+     */
     public void setMouseInput() {
         root.heightProperty().addListener((observable, oldValue, newValue) -> {
             this.grid.setPrefHeight(newValue.doubleValue() - 10);
@@ -56,22 +59,39 @@ public class ReversiGameController implements Initializable, Display {
         root.setOnMouseClicked(this.grid.getOnMouseClicked());
     }
 
+    /**
+     * Prints the board.
+     */
     public void printBoard() {
         this.board.printBoard();
     }
 
+    /**
+     * Prints the info about the game (player's score etc.).
+     */
     public void printGameInfo() {
         this.info.printInfo();
     }
 
+    /**
+     * Printing the options the player has.
+     * @param options list of options
+     */
     public void showOptions(ArrayList<Coordinates> options) {
         this.board.showOptions(options);
     }
 
+    /**
+     * Printing a message that the player has no move.
+     */
     public void printNoMove() {
         this.info.noMove();
     }
 
+    /**
+     * Printing the results of the game.
+     * @param result String containing the result.
+     */
     public void printGameResults(String result) {
         this.info.endOfGame(result);
     }
