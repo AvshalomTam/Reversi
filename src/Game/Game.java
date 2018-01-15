@@ -39,9 +39,12 @@ public class Game {
             if (this.status.isFinished()) {
                 return;
             }
-
-            if (judge.isValidChoice(this.board, move, this.status.getCurrent())) {
-                judge.turnTiles(this.board, move, this.status.getCurrent());
+            if (judge.hasOptions(this.board, this.status.getCurrent())) {
+                if (judge.isValidChoice(this.board, move, this.status.getCurrent())) {
+                    judge.turnTiles(this.board, move, this.status.getCurrent());
+                } else {
+                    return;
+                }
             }
             this.status.changePlayers();
             printScreen();
