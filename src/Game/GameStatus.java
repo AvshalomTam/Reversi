@@ -6,15 +6,25 @@ public class GameStatus {
     private GameLogic judge;
     private String pl1_name;
     private String pl2_name;
+    private boolean finished;
 
     public GameStatus() {}
 
+    /**
+     * Sets the info about status of game.
+     * @param board game board
+     * @param judge rules of the game
+     * @param p1_name color of the first player
+     * @param p2_name color of the second player
+     * @param starter player starting the game
+     */
     public void setInfo(Board board, GameLogic judge, String p1_name, String p2_name, cell starter) {
         this.board = board;
         this.judge = judge;
         this.pl1_name = p1_name;
         this.pl2_name = p2_name;
         this.current = starter;
+        this.finished = false;
     }
 
     public void changePlayers() {
@@ -48,14 +58,11 @@ public class GameStatus {
         return this.judge.getScore(this.board, player);
     }
 
-    public String getWinner() {
-        cell winner = this.judge.checkWinner(this.board);
-        if (winner == cell.first_player) {
-            return this.pl1_name + " wins the game!";
-        }
-        if (winner == cell.second_player) {
-            return this.pl2_name + " wins the game!";
-        }
-        return "It's a draw game!!";
+    public void setFinished() {
+        this.finished = true;
+    }
+
+    public boolean isFinished() {
+        return this.finished;
     }
 }

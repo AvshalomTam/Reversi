@@ -15,6 +15,11 @@ public class GameSettings {
         return ourInstance;
     }
 
+    /**
+     * Initializes all members for the game settings.
+     * If the file 'settings.txt' exists, it reads from it the settings.
+     * Otherwise it creates a default game, and creates default 'settings.txt'.
+     */
     private GameSettings() {
         try {
             FileReader reader = new FileReader("settings.txt");
@@ -49,6 +54,13 @@ public class GameSettings {
         }
     }
 
+    /**
+     * Saving the new settings to a file 'settings.txt'.
+     * @param size integer, size of board
+     * @param p1 String, color for first player
+     * @param p2 String, color for second player
+     * @param starter String, "1st Player" -> first player starting. "2nd Player" -> second player starting
+     */
     public void saveToFile(int size, String p1, String p2, String starter) {
         this.board_size = size;
         this.p1Name = p1;

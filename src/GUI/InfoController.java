@@ -69,7 +69,7 @@ public class InfoController extends VBox {
         this.getChildren().add(4, this.btn);
     }
 
-    public void endOfGame() {
+    public void endOfGame(String result) {
         this.getChildren().clear();
 
         Label lbl = new Label(this.status.getPl1Name() + " player score is: " + this.status.getScore(cell.first_player));
@@ -78,7 +78,7 @@ public class InfoController extends VBox {
         lbl = new Label(this.status.getPl2Name() + " player score is: " + this.status.getScore(cell.second_player));
         this.getChildren().add(1, lbl);
 
-        lbl = new Label(this.status.getWinner());
+        lbl = new Label(result);
         lbl.setFont(new Font(18));
         lbl.setPrefWidth(340);
         lbl.setPrefHeight(80);
