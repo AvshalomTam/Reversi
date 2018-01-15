@@ -4,8 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,10 +58,13 @@ public class SettingsController implements Initializable {
         //who starts?
         who_starts.setValue(settings.getStarterName());
         who_starts.setItems(who_starts_list);
-
     }
 
     public void startGame() {
+        if (haveSameColors()) {
+            errorSameColors();
+            return;
+        }
         this.saveToFile();
 
         if (!this.hasStage) {
@@ -70,6 +78,10 @@ public class SettingsController implements Initializable {
     }
 
     public void backToMenu() {
+        if (haveSameColors()) {
+            errorSameColors();
+            return;
+        }
         this.saveToFile();
 
         if (!this.hasStage) {
@@ -89,5 +101,16 @@ public class SettingsController implements Initializable {
         String starter = this.who_starts.getValue().toString();
 
         GameSettings.getInstance().saveToFile(size, color1, color2, starter);
+    }
+
+    public boolean haveSameColors() {
+        String color1 = this.first_color.getValue().toString();
+        String color2 = this.second_color.getValue().toString();
+        return color1.equals(color2);
+    }
+
+    public void errorSameColors() {
+        this.first_color.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        this.second_color.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }
