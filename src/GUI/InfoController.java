@@ -110,7 +110,7 @@ public class InfoController extends VBox {
 
     public void noMove() {
         Label lbl = new Label("No Move. Play passes to other player.\nClick anywhere on the board.");
-        lbl.setFont(new Font(15));
+        lbl.setFont(new Font(12));
         lbl.setTextFill(Color.RED);
         lbl.setPrefHeight(340);
         this.getChildren().add(3, lbl);

@@ -28,6 +28,12 @@ public class Game {
 
     public void playOneTurn(Coordinates move) {
         try {
+            if (!this.judge.hasOptions(this.board, this.status.getCurrent())) {
+                this.status.changePlayers();
+                printScreen();
+                printOptions();
+                return;
+            }
             if (judge.isValidChoice(this.board, move, this.status.getCurrent())) {
                 judge.turnTiles(this.board, move, this.status.getCurrent());
                 this.status.changePlayers();
@@ -41,7 +47,7 @@ public class Game {
             }
             if (!this.judge.hasOptions(this.board, this.status.getCurrent())) {
                 this.info.noMove();
-                this.status.changePlayers();
+                return;
             }
         } catch (Exception e) {}
     }
