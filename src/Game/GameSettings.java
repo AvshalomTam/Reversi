@@ -53,7 +53,13 @@ public class GameSettings {
         this.board_size = size;
         this.p1Name = p1;
         this.p2Name = p2;
-        this.p_starter = starter;
+
+        if (starter.equals("1st Player")) {
+            this.starter = cell.first_player;
+        }
+        else {
+            this.starter = cell.second_player;
+        }
 
         try {
             FileWriter writer = new FileWriter("settings.txt");
