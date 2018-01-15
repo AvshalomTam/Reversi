@@ -1,32 +1,26 @@
 package Game;
 
-import GUI.InfoController;
-import GUI.ReversiGameController;
-
 import java.util.ArrayList;
 
 public class Game {
     private Board board;
     private GameStatus status;
     private GameLogic judge;
-    private InfoController info;
-    private ReversiGameController gameController;
+    private Display display;
 
-    public void initialize(ReversiGameController gameController, Board board, GameStatus status, GameLogic judge, InfoController info) {
-        this.gameController = gameController;
+    public void initialize(Display display, Board board, GameStatus status, GameLogic judge) {
+        this.display = display;
         this.board = board;
         this.status = status;
         this.judge = judge;
-        this.info = info;
     }
 
     /**
      * Runs a game of Reversi.
      */
     public void run() {
-        this.gameController.setMouseInput();
-        printScreen();
-        printOptions();
+        this.printScreen();
+        this.printOptions();
     }
 
     /**
@@ -47,8 +41,8 @@ public class Game {
                 }
             }
             this.status.changePlayers();
-            printScreen();
-            printOptions();
+            this.printScreen();
+            this.printOptions();
 
             //checking if game has to be finished
             if (judge.boardIsFull(this.board) ||
@@ -58,7 +52,7 @@ public class Game {
                 return;
             }
             if (!this.judge.hasOptions(this.board, this.status.getCurrent())) {
-                this.info.noMove();
+                this.display.printNoMove();
                 return;
             }
         } catch (Exception e) {}
@@ -68,8 +62,8 @@ public class Game {
      * Prints the board and the info on its right.
      */
     public void printScreen() {
-        this.info.printInfo();
-        this.board.printBoard();
+        this.display.printBoard();
+        this.display.printGameInfo();
     }
 
     /**
@@ -77,7 +71,7 @@ public class Game {
      */
     public void printOptions() {
         ArrayList<Coordinates> options = this.judge.getOptions(this.board, this.status.getCurrent());
-        this.board.showOptions(options);
+        this.display.showOptions(options);
     }
 
     /**
@@ -95,7 +89,6 @@ public class Game {
                 result = "It's a draw game!!";
             }
         }
-
-        this.info.endOfGame(result);
+        this.display.printGameResults(result);
     }
 }

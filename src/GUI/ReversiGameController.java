@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ReversiGameController implements Initializable {
+public class ReversiGameController implements Initializable, Display {
     @FXML
     private HBox root;
     private GraphicBoard grid;
@@ -37,12 +37,10 @@ public class ReversiGameController implements Initializable {
         root.getChildren().add(0, board.getGraphicBoard());
         root.getChildren().add(1, this.info);
 
-        this.board.printBoard();
-        this.info.printInfo();
-
         this.game = new Game();
-        this.game.initialize(this, this.board, status, new BasicRules(), this.info);
+        this.game.initialize(this, this.board, status, new BasicRules());
         board.getGraphicBoard().setGame(game);
+        this.setMouseInput();
         this.game.run();
     }
 
@@ -56,5 +54,25 @@ public class ReversiGameController implements Initializable {
         });
 
         root.setOnMouseClicked(this.grid.getOnMouseClicked());
+    }
+
+    public void printBoard() {
+        this.board.printBoard();
+    }
+
+    public void printGameInfo() {
+        this.info.printInfo();
+    }
+
+    public void showOptions(ArrayList<Coordinates> options) {
+        this.board.showOptions(options);
+    }
+
+    public void printNoMove() {
+        this.info.noMove();
+    }
+
+    public void printGameResults(String result) {
+        this.info.endOfGame(result);
     }
 }
