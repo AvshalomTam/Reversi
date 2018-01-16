@@ -13,7 +13,7 @@ public class Piece extends Group {
         this.main.setFill(up);
         this.main.setStroke(stroke);
         this.main.setStrokeWidth(2);
-        this.shaddow = new Ellipse(0, 5, radius, 0.45 * radius);
+        this.shaddow = new Ellipse(0, radius*0.15, radius, 0.45 * radius);
         this.shaddow.setFill(side);
         this.shaddow.setStroke(stroke);
         this.shaddow.setStrokeWidth(2);
