@@ -18,7 +18,9 @@ public class GraphicBoard extends GridPane {
     public InfoController info_controller;
     private Game game;
     private Board board;
-    private static final Color board_color = Color.ANTIQUEWHITE;
+    private static final Color board_color_1 = Color.ANTIQUEWHITE;
+    private static final Color board_color_2 = Color.SANDYBROWN;
+    private static final Color option_color = Color.DARKOLIVEGREEN;
 
     /**
      * Constructor.
@@ -72,7 +74,14 @@ public class GraphicBoard extends GridPane {
         int size = board.getSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                rect = new Rectangle(cellHeight, cellHeight, board_color);
+                Color back;
+                if ((i + j) %  2 == 0) {
+                    back = board_color_1;
+                }
+                else {
+                    back = board_color_2;
+                }
+                rect = new Rectangle(cellHeight, cellHeight, back);
                 rect.setStroke(Color.DIMGRAY);
                 rect.setStrokeWidth(0.5);
                 this.add(rect, i, j);
@@ -105,7 +114,14 @@ public class GraphicBoard extends GridPane {
         int cellHeight = height / board.getSize();
         Piece piece;
         for (Coordinates option : options) {
-            piece = new Piece(0.4 * cellHeight, board_color, board_color, Color.GOLD);
+            Color back;
+            if ((option.getX() + option.getY()) %  2 == 0) {
+                back = board_color_1;
+            }
+            else {
+                back = board_color_2;
+            }
+            piece = new Piece(0.4 * cellHeight, back, back, option_color);
             setHalignment(piece, HPos.CENTER);
             this.add(piece, option.getX(), option.getY());
         }
