@@ -6,6 +6,7 @@ import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class GraphicBoard extends GridPane {
     public InfoController info_controller;
     private Game game;
     private Board board;
+    private static final Color board_color = Color.ANTIQUEWHITE;
 
     /**
      * Constructor.
@@ -72,7 +74,7 @@ public class GraphicBoard extends GridPane {
         int size = board.getSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                rect = new Rectangle(cellHeight, cellHeight, Color.ANTIQUEWHITE);
+                rect = new Rectangle(cellHeight, cellHeight, board_color);
                 rect.setStroke(Color.DIMGRAY);
                 rect.setStrokeWidth(0.5);
                 this.add(rect, i, j);
@@ -105,7 +107,7 @@ public class GraphicBoard extends GridPane {
         int cellHeight = height / board.getSize();
         Circle circle;
         for (Coordinates option : options) {
-            circle = new Circle(0.4 * cellHeight, Color.ANTIQUEWHITE);
+            circle = new Circle(0.4 * cellHeight, board_color);
             setHalignment(circle, HPos.CENTER);
             circle.setStroke(Color.GOLD);
             this.add(circle, option.getX(), option.getY());

@@ -2,10 +2,14 @@ package GUI;
 
 import Game.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.GridPane;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -85,7 +89,16 @@ public class ReversiGameController implements Initializable, Display {
      * Printing a message that the player has no move.
      */
     public void printNoMove() {
-        this.info.noMove();
+        try {
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Reversi");
+            AnchorPane set = (AnchorPane) FXMLLoader.load(getClass().getResource("NoMove.fxml"));
+            stage.setScene(new Scene(set, 300, 200));
+            stage.show();
+        } catch (Exception e) {
+            System.exit(0);
+        }
     }
 
     /**

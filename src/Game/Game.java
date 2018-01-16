@@ -53,6 +53,9 @@ public class Game {
             }
             if (!this.judge.hasOptions(this.board, this.status.getCurrent())) {
                 this.display.printNoMove();
+                this.status.changePlayers();
+                this.printScreen();
+                this.printOptions();
                 return;
             }
         } catch (Exception e) {}
