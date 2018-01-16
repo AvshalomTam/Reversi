@@ -5,8 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -70,7 +68,7 @@ public class GraphicBoard extends GridPane {
         int cellHeight = height / board.getSize();
 
         Rectangle rect;
-        Circle circle;
+        Piece piece;
         int size = board.getSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -80,14 +78,14 @@ public class GraphicBoard extends GridPane {
                 this.add(rect, i, j);
                 if (board.getCell(new Coordinates(i, j)) != cell.empty) {
                     if (board.getCell(new Coordinates(i, j)) == cell.first_player) {
-                        circle = new Circle(0.4 * cellHeight, this.color_pl1);
-                        setHalignment(circle, HPos.CENTER);
-                        this.add(circle, i, j);
+                        piece = new Piece(0.4 * cellHeight, this.color_pl1, this.color_pl2, Color.BLACK);
+                        setHalignment(piece, HPos.CENTER);
+                        this.add(piece, i, j);
                     }
                     else {
-                        circle = new Circle(0.4 * cellHeight, this.color_pl2);
-                        setHalignment(circle, HPos.CENTER);
-                        this.add(circle, i, j);
+                        piece = new Piece(0.4 * cellHeight, this.color_pl2, this.color_pl1, Color.BLACK);
+                        setHalignment(piece, HPos.CENTER);
+                        this.add(piece, i, j);
                     }
                 }
             }
@@ -105,12 +103,11 @@ public class GraphicBoard extends GridPane {
     public void drawOptions(ArrayList<Coordinates> options) {
         int height = (int)this.getPrefHeight();
         int cellHeight = height / board.getSize();
-        Circle circle;
+        Piece piece;
         for (Coordinates option : options) {
-            circle = new Circle(0.4 * cellHeight, board_color);
-            setHalignment(circle, HPos.CENTER);
-            circle.setStroke(Color.GOLD);
-            this.add(circle, option.getX(), option.getY());
+            piece = new Piece(0.4 * cellHeight, board_color, board_color, Color.GOLD);
+            setHalignment(piece, HPos.CENTER);
+            this.add(piece, option.getX(), option.getY());
         }
     }
 }
