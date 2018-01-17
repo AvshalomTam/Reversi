@@ -47,7 +47,7 @@ public class GameSettings {
             }
             bufferedReader.close();
         } catch (FileNotFoundException noFile) {
-            saveToFile(8, "Black", "Red", "1st Player");
+            saveToFile(8, "Yellow", "Blue", "1st Player");
         } catch (Exception error) {
             System.out.println(error.getMessage());
             System.exit(0);

@@ -2,9 +2,6 @@ import GUI.SceneFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-
 public class main extends Application {
     @Override
     public void start(Stage primaryStage) {
