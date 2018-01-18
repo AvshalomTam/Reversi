@@ -31,8 +31,8 @@ public class ReversiGameController implements Initializable, Display {
         ReversiBoard board = new ReversiBoard(settings.getBoardSize(), Color.web(settings.getPl1()), Color.web(settings.getPl2()), info, status);
 
         this.grid = board.getGraphicBoard();
-        this.grid.setPrefHeight(400);
-        this.grid.setPrefWidth(400);
+        this.grid.setPrefHeight(500);
+        this.grid.setPrefWidth(500);
 
         this.board = board;
 

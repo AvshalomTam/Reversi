@@ -4,10 +4,20 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 
+/**
+ * A piece of a player on the board game.
+ */
 public class Piece extends Group {
     private Ellipse main;
     private Ellipse shaddow;
 
+    /**
+     * Constructor.
+     * @param radius radius of the piece
+     * @param up color of the upper part
+     * @param side color of its side
+     * @param stroke color of the stroke
+     */
     public Piece(double radius, Color up, Color side, Color stroke) {
         this.main = new Ellipse(0, 0, radius, 0.45 * radius);
         this.main.setFill(up);
