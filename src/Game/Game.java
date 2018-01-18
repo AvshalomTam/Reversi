@@ -41,17 +41,19 @@ public class Game {
                     return;
                 }
             }
-            this.status.changePlayers();
-            this.printScreen();
-            this.printOptions();
 
             //checking if game has to be finished
             if (judge.boardIsFull(this.board) ||
                     (!judge.hasOptions(this.board, cell.first_player) && (!judge.hasOptions(this.board, cell.second_player)))) {
+                this.printScreen();
+                this.printOptions();
                 this.status.setFinished();
                 endGame();
                 return;
             }
+            this.status.changePlayers();
+            this.printScreen();
+            this.printOptions();
             if (!this.judge.hasOptions(this.board, this.status.getCurrent().getNumPLayer())) {
                 this.display.printNoMove();
                 this.status.changePlayers();
