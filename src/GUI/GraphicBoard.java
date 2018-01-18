@@ -14,8 +14,6 @@ public class GraphicBoard extends GridPane {
     private Color color_pl2;
     private Coordinates input = null;
     private FXMLLoader loader;
-    public GameStatus status;
-    public InfoController info_controller;
     private Game game;
     private Board board;
     private static final Color board_color_1 = Color.ANTIQUEWHITE;
@@ -27,16 +25,12 @@ public class GraphicBoard extends GridPane {
      * @param board game board
      * @param colorPl1 color of first player
      * @param colorPl2 color of second player
-     * @param info info of the game (on the right of the screen)
-     * @param status status of game
      */
-    public GraphicBoard(Board board, Color colorPl1, Color colorPl2, InfoController info, GameStatus status) {
+    public GraphicBoard(Board board, Color colorPl1, Color colorPl2) {
         this.board = board;
-        this.status = status;
         this.color_pl1 = colorPl1;
         this.color_pl2 = colorPl2;
-        this.info_controller = info;
-        this.loader = new FXMLLoader(getClass().getResource("ReversiBoard.fxml"));
+        this.loader = new FXMLLoader(getClass().getResource("../FXML/ReversiBoard.fxml"));
         this.loader.setRoot(this);
         this.loader.setController(this);
 
@@ -57,7 +51,9 @@ public class GraphicBoard extends GridPane {
                 this.game.playOneTurn(this.input);
                 event.consume();
             });
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            System.exit(0);
+        }
     }
 
 

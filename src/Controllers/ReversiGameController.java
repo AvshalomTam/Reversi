@@ -1,16 +1,17 @@
-package GUI;
+package Controllers;
 
+import GUI.GraphicBoard;
+import GUI.ReversiBoard;
 import Game.*;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
+import javax.annotation.Resource;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -28,7 +29,7 @@ public class ReversiGameController implements Initializable, Display {
         GameSettings settings = GameSettings.getInstance();
         GameStatus status = new GameStatus();
         this.info = new InfoController(status);
-        ReversiBoard board = new ReversiBoard(settings.getBoardSize(), Color.web(settings.getPl1()), Color.web(settings.getPl2()), info, status);
+        ReversiBoard board = new ReversiBoard(settings.getBoardSize(), Color.web(settings.getPl1()), Color.web(settings.getPl2()));
 
         this.grid = board.getGraphicBoard();
         this.grid.setPrefHeight(500);
@@ -36,7 +37,9 @@ public class ReversiGameController implements Initializable, Display {
 
         this.board = board;
 
-        status.setInfo(this.board, new BasicRules(), settings.getPl1(), settings.getPl2(), settings.getStarter());
+        Player p1 = new HumanPlayer(cell.first_player, settings.getPl1());
+        Player p2 = new HumanPlayer(cell.second_player, settings.getPl2());
+        status.setInfo(this.board, new BasicRules(), p1, p2, settings.getStarter());
 
         root.getChildren().add(0, board.getGraphicBoard());
         root.getChildren().add(1, this.info);
@@ -89,16 +92,10 @@ public class ReversiGameController implements Initializable, Display {
      * Printing a message that the player has no move.
      */
     public void printNoMove() {
-        try {
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Reversi");
-            AnchorPane set = (AnchorPane) FXMLLoader.load(getClass().getResource("NoMove.fxml"));
-            stage.setScene(new Scene(set, 300, 200));
-            stage.show();
-        } catch (Exception e) {
-            System.exit(0);
-        }
+        Alert alert = new Alert(Alert.AlertType.NONE, "OK", ButtonType.OK);
+        alert.setContentText("Uh oh! No Move!\nPlay passes to other player.");
+        alert.setTitle("NO MOVE");
+        alert.showAndWait();
     }
 
     /**
@@ -106,6 +103,9 @@ public class ReversiGameController implements Initializable, Display {
      * @param result String containing the result.
      */
     public void printGameResults(String result) {
-        this.info.endOfGame(result);
+        Alert alert = new Alert(Alert.AlertType.NONE, null, ButtonType.OK);
+        alert.setContentText(result);
+        alert.setTitle("GAME OVER");
+        alert.showAndWait();
     }
 }

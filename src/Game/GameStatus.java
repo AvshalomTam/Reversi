@@ -4,25 +4,31 @@ public class GameStatus {
     private cell current;
     private Board board;
     private GameLogic judge;
+    private Player p1;
+    private Player p2;
     private String pl1_name;
     private String pl2_name;
     private boolean finished;
 
     public GameStatus() {}
 
+    public void setStarter(cell starter) {
+        this.current = starter;
+    }
+
     /**
      * Sets the info about status of game.
      * @param board game board
      * @param judge rules of the game
-     * @param p1_name color of the first player
-     * @param p2_name color of the second player
+     * @param p1 color of the first player
+     * @param p2 color of the second player
      * @param starter player starting the game
      */
-    public void setInfo(Board board, GameLogic judge, String p1_name, String p2_name, cell starter) {
+    public void setInfo(Board board, GameLogic judge, Player p1, Player p2, cell starter) {
         this.board = board;
         this.judge = judge;
-        this.pl1_name = p1_name;
-        this.pl2_name = p2_name;
+        this.p1 = p1;
+        this.p2 = p2;
         this.current = starter;
         this.finished = false;
     }
@@ -35,24 +41,28 @@ public class GameStatus {
         }
     }
 
-    public cell getCurrent() {
-        return this.current;
+    public Player getCurrent() {
+        if (this.current == cell.first_player) {
+            return this.p1;
+        } else {
+            return this.p2;
+        }
     }
 
-    public String getPl1Name() {
-        return this.pl1_name;
+    public Player getP1() {
+        return this.p1;
     }
 
-    public String getPl2Name() {
-        return this.pl2_name;
+    public Player getP2() {
+        return this.p2;
     }
 
-    public String getCurrentName() {
+    /*public String getCurrentName() {
         if (this.current == cell.first_player) {
             return getPl1Name();
         }
         return getPl2Name();
-    }
+    }*/
 
     public int getScore(cell player) {
         return this.judge.getScore(this.board, player);

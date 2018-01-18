@@ -28,14 +28,15 @@ public class Game {
      * @param move Coordinates of the player
      */
     public void playOneTurn(Coordinates move) {
+        Player player = this.status.getCurrent();
         try {
             //if game is finished, ignoring incoming clicks
             if (this.status.isFinished()) {
                 return;
             }
-            if (judge.hasOptions(this.board, this.status.getCurrent())) {
-                if (judge.isValidChoice(this.board, move, this.status.getCurrent())) {
-                    judge.turnTiles(this.board, move, this.status.getCurrent());
+            if (judge.hasOptions(this.board, player.getNumPLayer())) {
+                if (judge.isValidChoice(this.board, move, player.getNumPLayer())) {
+                    judge.turnTiles(this.board, move, player.getNumPLayer());
                 } else {
                     return;
                 }
@@ -51,14 +52,15 @@ public class Game {
                 endGame();
                 return;
             }
-            if (!this.judge.hasOptions(this.board, this.status.getCurrent())) {
+            if (!this.judge.hasOptions(this.board, this.status.getCurrent().getNumPLayer())) {
                 this.display.printNoMove();
                 this.status.changePlayers();
                 this.printScreen();
                 this.printOptions();
-                return;
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            System.exit(0);
+        }
     }
 
     /**
@@ -73,7 +75,7 @@ public class Game {
      * Prints the options for the player.
      */
     public void printOptions() {
-        ArrayList<Coordinates> options = this.judge.getOptions(this.board, this.status.getCurrent());
+        ArrayList<Coordinates> options = this.judge.getOptions(this.board, this.status.getCurrent().getNumPLayer());
         this.display.showOptions(options);
     }
 
@@ -84,10 +86,10 @@ public class Game {
         String result;
         cell winner = this.judge.checkWinner(this.board);
         if (winner == cell.first_player) {
-            result = this.status.getPl1Name() + " wins the game!";
+            result = "Congratulations! " + this.status.getP1().getName() + " wins the game!";
         } else {
             if (winner == cell.second_player) {
-                result = this.status.getPl2Name() + " wins the game!";
+                result = "Congratulations! " + this.status.getP2().getName() + " wins the game!";
             } else {
                 result = "It's a draw game!!";
             }

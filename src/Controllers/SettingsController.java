@@ -1,11 +1,14 @@
-package GUI;
+package Controllers;
+import GUI.SceneFactory;
 import Game.GameSettings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -126,7 +129,12 @@ public class SettingsController implements Initializable {
      * Indicating the user that there's an error with his choice of color.
      */
     public void errorSameColors() {
-        this.first_color.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-        this.second_color.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        this.first_color.setBackground(new Background(new BackgroundFill(Color.rgb(255, 70, 70), CornerRadii.EMPTY, Insets.EMPTY)));
+        this.second_color.setBackground(new Background(new BackgroundFill(Color.rgb(255, 70, 70), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        Alert alert = new Alert(Alert.AlertType.ERROR, "OK", ButtonType.OK);
+        alert.setContentText("Cannot assign same color to both players.");
+        alert.setTitle("BAD COLOR CHOICE");
+        alert.showAndWait();
     }
 }

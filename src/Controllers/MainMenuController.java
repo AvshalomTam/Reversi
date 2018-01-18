@@ -1,8 +1,11 @@
-package GUI;
+package Controllers;
 
+import GUI.SceneFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -44,6 +47,12 @@ public class MainMenuController implements Initializable {
     }
 
     public void exit() {
-        System.exit(0);
+        Alert alert = new Alert(Alert.AlertType.NONE, null, ButtonType.NO, ButtonType.YES);
+        alert.setContentText("Are you sure?");
+        alert.setTitle("QUIT GAME");
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.YES) {
+            System.exit(0);
+        }
     }
 }

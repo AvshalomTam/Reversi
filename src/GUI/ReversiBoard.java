@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public class ReversiBoard extends Board {
     private GraphicBoard board;
 
-    public ReversiBoard(int size, Color colorPl1, Color colorPl2, InfoController info, GameStatus status) {
+    public ReversiBoard(int size, Color colorPl1, Color colorPl2) {
         super(size);
-        this.board = new GraphicBoard(this, colorPl1, colorPl2, info, status);
+        this.board = new GraphicBoard(this, colorPl1, colorPl2);
     }
 
     public void printBoard() {
