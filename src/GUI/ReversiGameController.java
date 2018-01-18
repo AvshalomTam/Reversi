@@ -1,17 +1,13 @@
-package Controllers;
+package GUI;
 
-import GUI.GraphicBoard;
-import GUI.ReversiBoard;
 import Game.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
-import javax.annotation.Resource;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

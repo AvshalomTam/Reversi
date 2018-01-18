@@ -1,4 +1,4 @@
-package Controllers;
+package GUI;
 import GUI.SceneFactory;
 import Game.GameSettings;
 import javafx.collections.FXCollections;

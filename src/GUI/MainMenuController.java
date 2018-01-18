@@ -1,4 +1,4 @@
-package Controllers;
+package GUI;
 
 import GUI.SceneFactory;
 import javafx.fxml.FXML;

@@ -1,6 +1,5 @@
-package Controllers;
+package GUI;
 
-import GUI.SceneFactory;
 import Game.GameStatus;
 import Game.cell;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +21,7 @@ public class InfoController extends VBox {
 
     public InfoController(GameStatus status) {
         this.status = status;
-        this.loader = new FXMLLoader(getClass().getResource("../FXML/Info.fxml"));
+        this.loader = new FXMLLoader(getClass().getResource("Info.fxml"));
         this.loader.setRoot(this);
         this.loader.setController(this);
 

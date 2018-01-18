@@ -30,7 +30,7 @@ public class GraphicBoard extends GridPane {
         this.board = board;
         this.color_pl1 = colorPl1;
         this.color_pl2 = colorPl2;
-        this.loader = new FXMLLoader(getClass().getResource("../FXML/ReversiBoard.fxml"));
+        this.loader = new FXMLLoader(getClass().getResource("ReversiBoard.fxml"));
         this.loader.setRoot(this);
         this.loader.setController(this);
 
